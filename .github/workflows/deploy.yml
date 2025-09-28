@@ -40,6 +40,9 @@ jobs:
           NODE_ENV: production
           NPM_CONFIG_LEGACY_PEER_DEPS: true
         run: npm install --production --legacy-peer-deps --no-audit --no-fund
+
+      - name: Ensure babel preset for Expo is available
+        run: npm install babel-preset-expo --no-audit --no-fund
         
       - name: Build web version
         run: npm run build:web
