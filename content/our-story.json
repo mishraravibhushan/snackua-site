@@ -1,0 +1,18 @@
+{
+  "title": "Our Story",
+  "subtitle": "Where Heritage Meets Modern Twist",
+  "sections": [
+    {
+      "title": "A Family Tradition",
+      "content": "Snackua was born from a simple desire to bring back the authentic taste of traditional Indian cookies while making them healthier for today's lifestyle. Our recipe has been passed down through generations, carefully preserved and now lovingly adapted for modern health consciousness."
+    },
+    {
+      "title": "The Modern Twist",
+      "content": "We've taken our grandmother's time-tested recipe and given it a contemporary makeover. By replacing refined sugar with pure jaggery, white flour with whole wheat, and adding natural ingredients like coconut and fennel, we've created cookies that are not just delicious but also nutritious."
+    },
+    {
+      "title": "Our Mission",
+      "content": "To make healthy snacking accessible and enjoyable for everyone. We believe that good food should nourish both body and soul, and our cookies are crafted with this philosophy at heart."
+    }
+  ]
+}

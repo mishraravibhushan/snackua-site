@@ -1,0 +1,35 @@
+{
+  "title": "Our Products",
+  "subtitle": "Healthy Cookies for Every Occasion",
+  "products": [
+    {
+      "id": "classic-jaggery-cookies",
+      "name": "Classic Jaggery Cookies",
+      "description": "Our signature cookies made with traditional ingredients and modern health consciousness.",
+      "price": "₹299",
+      "weight": "250g",
+      "servings": "Approx. 20 cookies",
+      "image": "/images/classic-cookies.jpg",
+      "nutrition": {
+        "per100g": {
+          "calories": "420",
+          "protein": "8g",
+          "carbs": "65g",
+          "fiber": "6g",
+          "fat": "12g",
+          "sugar": "25g"
+        },
+        "perCookie": {
+          "calories": "52",
+          "protein": "1g",
+          "carbs": "8g",
+          "fiber": "0.8g",
+          "fat": "1.5g",
+          "sugar": "3g"
+        }
+      },
+      "allergens": "Contains wheat, dairy (ghee). May contain traces of nuts.",
+      "ingredients": "Whole wheat flour, jaggery, desi ghee, fresh coconut, fennel seeds, cardamom"
+    }
+  ]
+}

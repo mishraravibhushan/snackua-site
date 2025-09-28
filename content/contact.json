@@ -1,0 +1,33 @@
+{
+  "title": "Contact & Order",
+  "subtitle": "Get in Touch With Us",
+  "whatsapp": {
+    "number": "+91-9876543210",
+    "message": "Hi! I'd like to order Snackua cookies. Please share details about availability and pricing.",
+    "buttonText": "Order on WhatsApp"
+  },
+  "email": "hello@snackua.in",
+  "socialMedia": {
+    "instagram": "@snackua_official",
+    "facebook": "SnackuaOfficial",
+    "twitter": "@snackua_in"
+  },
+  "businessHours": {
+    "weekdays": "9:00 AM - 7:00 PM",
+    "weekends": "10:00 AM - 6:00 PM",
+    "timezone": "IST"
+  },
+  "deliveryInfo": {
+    "areas": "Pan India delivery available",
+    "timeline": "2-5 business days",
+    "charges": "Free delivery on orders above ₹500"
+  },
+  "address": {
+    "company": "Snackua Foods",
+    "street": "123 Health Street",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400001",
+    "country": "India"
+  }
+}

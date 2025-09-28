@@ -1,0 +1,44 @@
+{
+  "title": "Nutrition Information",
+  "subtitle": "Know What You're Eating",
+  "disclaimer": "Nutritional values are approximate and may vary slightly based on natural variations in ingredients.",
+  "tables": [
+    {
+      "title": "Per 100g",
+      "data": {
+        "Energy": "420 kcal",
+        "Protein": "8g",
+        "Carbohydrates": "65g",
+        "of which sugars": "25g",
+        "Fat": "12g",
+        "of which saturated": "6g",
+        "Fiber": "6g",
+        "Sodium": "2mg",
+        "Iron": "2.5mg",
+        "Calcium": "45mg"
+      }
+    },
+    {
+      "title": "Per Cookie (approx. 12g)",
+      "data": {
+        "Energy": "52 kcal",
+        "Protein": "1g",
+        "Carbohydrates": "8g",
+        "of which sugars": "3g",
+        "Fat": "1.5g",
+        "of which saturated": "0.8g",
+        "Fiber": "0.8g",
+        "Sodium": "0.2mg",
+        "Iron": "0.3mg",
+        "Calcium": "5.5mg"
+      }
+    }
+  ],
+  "benefits": [
+    "No refined sugar - sweetened with pure jaggery",
+    "High in dietary fiber from whole wheat",
+    "Natural antioxidants from jaggery and coconut",
+    "Healthy fats from desi ghee",
+    "Digestive benefits from fennel seeds"
+  ]
+}

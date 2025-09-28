@@ -1,0 +1,31 @@
+{
+  "title": "Ingredients & Benefits",
+  "subtitle": "100% Natural, 100% Delicious",
+  "ingredients": [
+    {
+      "name": "Whole Wheat Flour",
+      "description": "Rich in fiber, vitamins, and minerals. Provides sustained energy and supports digestive health.",
+      "benefits": ["High in fiber", "Rich in B vitamins", "Supports heart health", "Aids digestion"]
+    },
+    {
+      "name": "Pure Jaggery",
+      "description": "Unrefined sweetener that retains natural minerals and antioxidants. A healthier alternative to white sugar.",
+      "benefits": ["Rich in iron", "Natural antioxidants", "Boosts immunity", "Regulates blood sugar"]
+    },
+    {
+      "name": "Desi Ghee",
+      "description": "Traditional clarified butter that adds richness and flavor while providing essential fatty acids.",
+      "benefits": ["Healthy fats", "Vitamin A & E", "Supports brain health", "Anti-inflammatory"]
+    },
+    {
+      "name": "Fresh Coconut",
+      "description": "Adds natural sweetness and texture while providing medium-chain triglycerides for energy.",
+      "benefits": ["Medium-chain fats", "Natural sweetness", "Supports metabolism", "Rich in fiber"]
+    },
+    {
+      "name": "Fennel Seeds",
+      "description": "Aromatic spice that aids digestion and adds a subtle licorice flavor to our cookies.",
+      "benefits": ["Aids digestion", "Natural breath freshener", "Anti-inflammatory", "Rich in antioxidants"]
+    }
+  ]
+}

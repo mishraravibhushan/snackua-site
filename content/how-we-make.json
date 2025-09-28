@@ -1,0 +1,38 @@
+{
+  "title": "How We Make Our Cookies",
+  "subtitle": "Traditional Methods, Modern Standards",
+  "process": [
+    {
+      "step": 1,
+      "title": "Ingredient Selection",
+      "description": "We carefully source the finest ingredients - organic whole wheat flour, pure jaggery from trusted suppliers, fresh desi ghee, and aromatic spices.",
+      "image": "/images/step1-ingredients.jpg"
+    },
+    {
+      "step": 2,
+      "title": "Dough Preparation",
+      "description": "Our skilled artisans mix the ingredients using traditional techniques, ensuring the perfect consistency and texture for our signature cookies.",
+      "image": "/images/step2-dough.jpg"
+    },
+    {
+      "step": 3,
+      "title": "Shaping & Baking",
+      "description": "Each cookie is hand-shaped and baked in controlled temperature ovens to achieve the perfect golden-brown color and crisp texture.",
+      "image": "/images/step3-baking.jpg"
+    },
+    {
+      "step": 4,
+      "title": "Quality Check & Packaging",
+      "description": "Every batch undergoes rigorous quality checks before being carefully packaged in eco-friendly materials to maintain freshness.",
+      "image": "/images/step4-packaging.jpg"
+    }
+  ],
+  "qualityAssurance": [
+    "Hygienic preparation environment",
+    "Regular quality testing",
+    "Fresh ingredient sourcing",
+    "Eco-friendly packaging",
+    "No artificial preservatives",
+    "Traditional cooking methods"
+  ]
+}
