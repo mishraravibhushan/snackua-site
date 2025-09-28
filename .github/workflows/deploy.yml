@@ -35,10 +35,11 @@ jobs:
           node-version: '18'
           cache: 'npm'
           
-      - name: Install dependencies
+      - name: Install production dependencies (ignore peer conflicts)
         env:
+          NODE_ENV: production
           NPM_CONFIG_LEGACY_PEER_DEPS: true
-        run: npm ci --omit=dev --legacy-peer-deps --no-audit --no-fund
+        run: npm install --production --legacy-peer-deps --no-audit --no-fund
         
       - name: Build web version
         run: npm run build:web
