@@ -2,15 +2,14 @@
   "title": "Contact & Order",
   "subtitle": "Get in Touch With Us",
   "whatsapp": {
-    "number": "+91-9876543210",
+    "number": "+91-8105807581",
     "message": "Hi! I'd like to order Snackua cookies. Please share details about availability and pricing.",
     "buttonText": "Order on WhatsApp"
   },
   "email": "hello@snackua.in",
   "socialMedia": {
-    "instagram": "@snackua_official",
-    "facebook": "SnackuaOfficial",
-    "twitter": "@snackua_in"
+    "instagram": "@snackua.co",
+    "facebook": "@snackua.co"
   },
   "businessHours": {
     "weekdays": "9:00 AM - 7:00 PM",

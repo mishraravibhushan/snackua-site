@@ -38,9 +38,6 @@ export default function ContactScreen() {
       case 'facebook':
         url = `https://facebook.com/${handle}`;
         break;
-      case 'twitter':
-        url = `https://twitter.com/${handle}`;
-        break;
     }
     if (url) {
       Linking.openURL(url);
@@ -121,14 +118,6 @@ export default function ContactScreen() {
               >
                 <Ionicons name="logo-facebook" size={24} color="#1877F2" />
                 <Text style={styles.socialText}>{contactContent.socialMedia.facebook}</Text>
-              </View>
-              
-              <View 
-                style={styles.socialItem}
-                onTouchEnd={() => handleSocialPress('twitter', contactContent.socialMedia.twitter)}
-              >
-                <Ionicons name="logo-twitter" size={24} color="#1DA1F2" />
-                <Text style={styles.socialText}>{contactContent.socialMedia.twitter}</Text>
               </View>
             </View>
           </Card>

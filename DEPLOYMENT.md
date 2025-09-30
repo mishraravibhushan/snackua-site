@@ -210,5 +210,5 @@ npm run build:all      # Both platforms
 
 ### Support
 - Email: hello@snackua.in
-- WhatsApp: +91-9876543210
+- WhatsApp: +91-8105807581
 - Check Expo documentation for technical issues
