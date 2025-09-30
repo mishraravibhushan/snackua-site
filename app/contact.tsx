@@ -13,11 +13,24 @@ import { colors, spacing, typography } from '../styles/theme';
 export default function ContactScreen() {
   const handleWhatsAppPress = () => {
     const message = encodeURIComponent(contactContent.whatsapp.message);
-    const url = `whatsapp://send?phone=${contactContent.whatsapp.number}&text=${message}`;
+    // Clean the phone number for WhatsApp (remove + and dashes)
+    const cleanPhoneNumber = contactContent.whatsapp.number.replace(/[+\-\s]/g, '');
+    
+    // For Indian numbers, ensure proper formatting
+    let formattedNumber = cleanPhoneNumber;
+    if (cleanPhoneNumber.startsWith('91')) {
+      // Already has country code
+      formattedNumber = cleanPhoneNumber;
+    } else if (cleanPhoneNumber.length === 10) {
+      // Indian mobile number without country code
+      formattedNumber = `91${cleanPhoneNumber}`;
+    }
+    
+    const url = `whatsapp://send?phone=${formattedNumber}&text=${message}`;
     
     if (Platform.OS === 'web') {
-      // For web, open WhatsApp Web
-      const webUrl = `https://wa.me/${contactContent.whatsapp.number}?text=${message}`;
+      // For web, use the standard wa.me format
+      const webUrl = `https://wa.me/${formattedNumber}?text=${message}`;
       Linking.openURL(webUrl);
     } else {
       // For mobile apps
