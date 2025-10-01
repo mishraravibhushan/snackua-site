@@ -9,7 +9,8 @@
       "price": "₹299",
       "weight": "250g",
       "servings": "Approx. 20 cookies",
-      "image": "/images/classic-cookies.jpg",
+      "image": "/images/products/product-hero.jpg",
+      "closeupImage": "/images/products/product-closeup.jpg",
       "nutrition": {
         "per100g": {
           "calories": "420",

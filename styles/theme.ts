@@ -1,22 +1,29 @@
 import { Platform } from 'react-native';
 
 export const colors = {
-  primary: '#8B4513',      // Earthy brown
-  secondary: '#A0522D',    // Saddle brown
-  accent: '#DAA520',       // Golden rod
-  background: '#F5F1E8',   // Cream
-  white: '#FFFFFF',
+  primary: '#8B4513',        // Earthy Brown
+  secondary: '#DAA520',      // Golden Yellow
+  accent: '#CD853F',         // Peru (warm brown)
+  background: '#F5F1E8',     // Cream
+  surface: '#FFFFFF',        // White
   black: '#000000',
   text: {
-    primary: '#8B4513',
-    secondary: '#A0522D',
-    light: '#D2B48C',
+    primary: '#2C1810',      // Dark brown
+    secondary: '#8B4513',    // Medium brown
+    light: '#A0522D',        // Light brown
     white: '#FFFFFF',
   },
   whatsapp: '#25D366',
   success: '#4CAF50',
   warning: '#FF9800',
   error: '#F44336',
+  info: '#2196F3',
+  // Gradient colors
+  gradient: {
+    primary: ['#8B4513', '#DAA520'],
+    secondary: ['#F5F1E8', '#FFFFFF'],
+    hero: ['rgba(139, 69, 19, 0.8)', 'rgba(218, 165, 32, 0.8)'],
+  },
 };
 
 export const fonts = {
@@ -67,29 +74,40 @@ export const shadows = {
 };
 
 export const typography = {
-  h1: {
-    fontSize: 32,
+  hero: {
+    fontSize: 48,
     fontWeight: 'bold' as const,
     fontFamily: fonts.heading,
     color: colors.text.primary,
+    lineHeight: 56,
+  },
+  h1: {
+    fontSize: 36,
+    fontWeight: 'bold' as const,
+    fontFamily: fonts.heading,
+    color: colors.text.primary,
+    lineHeight: 44,
   },
   h2: {
     fontSize: 28,
-    fontWeight: 'bold' as const,
-    fontFamily: fonts.heading,
-    color: colors.text.primary,
-  },
-  h3: {
-    fontSize: 24,
-    fontWeight: 'bold' as const,
-    fontFamily: fonts.heading,
-    color: colors.text.primary,
-  },
-  h4: {
-    fontSize: 20,
     fontWeight: '600' as const,
     fontFamily: fonts.heading,
     color: colors.text.primary,
+    lineHeight: 36,
+  },
+  h3: {
+    fontSize: 24,
+    fontWeight: '600' as const,
+    fontFamily: fonts.heading,
+    color: colors.text.primary,
+    lineHeight: 32,
+  },
+  h4: {
+    fontSize: 20,
+    fontWeight: '500' as const,
+    fontFamily: fonts.heading,
+    color: colors.text.primary,
+    lineHeight: 28,
   },
   body: {
     fontSize: 16,
@@ -113,5 +131,13 @@ export const typography = {
     fontSize: 12,
     fontFamily: fonts.body,
     color: colors.text.light,
+    lineHeight: 16,
+  },
+  lead: {
+    fontSize: 18,
+    fontFamily: fonts.body,
+    color: colors.text.secondary,
+    lineHeight: 28,
+    fontWeight: '500' as const,
   },
 };

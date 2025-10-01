@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import AppBar from '../components/AppBar';
 import Card from '../components/Card';
 import HeroSection from '../components/HeroSection';
 import CTAButton from '../components/CTAButton';
+import PlaceholderImage from '../components/PlaceholderImage';
 import productsContent from '../content/products.json';
 import { colors, spacing, typography } from '../styles/theme';
 
@@ -32,6 +33,40 @@ export default function ProductsScreen() {
         <View style={styles.content}>
           {productsContent.products.map((product, index) => (
             <Card key={index} style={styles.productCard}>
+              {/* Product Images */}
+              <View style={styles.productImages}>
+                {product.image && (
+                  <View style={styles.mainImageContainer}>
+                    {product.image.includes('placeholder') ? (
+                      <PlaceholderImage
+                        width={300}
+                        height={200}
+                        icon="cube-outline"
+                        text="Product Image\n(600x400px)"
+                        backgroundColor={colors.background}
+                      />
+                    ) : (
+                      <Image source={{ uri: product.image }} style={styles.mainImage} />
+                    )}
+                  </View>
+                )}
+                {product.closeupImage && (
+                  <View style={styles.closeupImageContainer}>
+                    {product.closeupImage.includes('placeholder') ? (
+                      <PlaceholderImage
+                        width={150}
+                        height={150}
+                        icon="search-outline"
+                        text="Closeup\n(300x300px)"
+                        backgroundColor={colors.background}
+                      />
+                    ) : (
+                      <Image source={{ uri: product.closeupImage }} style={styles.closeupImage} />
+                    )}
+                  </View>
+                )}
+              </View>
+
               <View style={styles.productHeader}>
                 <Text style={styles.productName}>{product.name}</Text>
                 <Text style={styles.productPrice}>{product.price}</Text>
@@ -103,6 +138,30 @@ const styles = StyleSheet.create({
   },
   productCard: {
     marginBottom: spacing.lg,
+  },
+  productImages: {
+    marginBottom: spacing.lg,
+  },
+  mainImageContainer: {
+    marginBottom: spacing.md,
+    alignItems: 'center',
+  },
+  mainImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    resizeMode: 'cover',
+    backgroundColor: colors.background,
+  },
+  closeupImageContainer: {
+    alignItems: 'center',
+  },
+  closeupImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    resizeMode: 'cover',
+    backgroundColor: colors.background,
   },
   productHeader: {
     flexDirection: 'row',

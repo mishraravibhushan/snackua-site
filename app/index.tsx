@@ -1,79 +1,149 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 // Import content data
 import homeContent from '../content/home.json';
-import { colors, fonts, spacing, borderRadius, shadows } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+
+// Import components
+import HeroImage from '../components/HeroImage';
+import FeatureCard from '../components/FeatureCard';
+import TestimonialCard from '../components/TestimonialCard';
+import ProcessStep from '../components/ProcessStep';
+import NutritionCard from '../components/NutritionCard';
 
 export default function HomeScreen() {
+  const handleWhatsAppPress = () => {
+    Linking.openURL(homeContent.cta.whatsappLink);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Hero Section */}
-        <View style={styles.heroSection}>
-          <View style={styles.logoContainer}>
-            <Text style={styles.logo}>Snackua</Text>
-            <Text style={styles.tagline}>{homeContent.tagline}</Text>
+        <HeroImage
+          title={homeContent.hero.title}
+          subtitle={homeContent.hero.subtitle}
+          description={homeContent.hero.description}
+          ctaText={homeContent.hero.cta}
+          backgroundImage={homeContent.hero.backgroundImage}
+          onCTAPress={handleWhatsAppPress}
+        />
+
+        {/* Features Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Why Choose Snackua?</Text>
+          <View style={styles.featuresGrid}>
+            {homeContent.features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))}
           </View>
-          
-          <View style={styles.benefitsContainer}>
-            <Text style={styles.benefitsText}>
-              {homeContent.benefits.map((benefit, index) => (
-                <Text key={index} style={styles.benefitItem}>
-                  {benefit}{index < homeContent.benefits.length - 1 ? ' • ' : ''}
-                </Text>
-              ))}
-            </Text>
+        </View>
+
+        {/* Process Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>How We Make Our Cookies</Text>
+          <View style={styles.processContainer}>
+            {homeContent.process.map((step, index) => (
+              <ProcessStep
+                key={index}
+                step={step.step}
+                title={step.title}
+                description={step.description}
+                image={step.image}
+                isLast={index === homeContent.process.length - 1}
+              />
+            ))}
+          </View>
+        </View>
+
+        {/* Nutrition Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{homeContent.nutrition.title}</Text>
+          <View style={styles.nutritionGrid}>
+            {homeContent.nutrition.highlights.map((highlight, index) => (
+              <NutritionCard
+                key={index}
+                icon={highlight.icon}
+                title={highlight.title}
+                value={highlight.value}
+                description={highlight.description}
+              />
+            ))}
+          </View>
+        </View>
+
+        {/* Testimonials Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>What Our Customers Say</Text>
+          <View style={styles.testimonialsContainer}>
+            {homeContent.testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                name={testimonial.name}
+                location={testimonial.location}
+                text={testimonial.text}
+                rating={testimonial.rating}
+                image={testimonial.image}
+              />
+            ))}
           </View>
         </View>
 
         {/* Navigation Cards */}
-        <View style={styles.navigationContainer}>
-          <Link href="/our-story" style={styles.navCard}>
-            <View style={styles.card}>
-              <Ionicons name="book-outline" size={32} color="#8B4513" />
-              <Text style={styles.cardTitle}>Our Story</Text>
-              <Text style={styles.cardDescription}>Heritage meets modern twist</Text>
-            </View>
-          </Link>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Explore More</Text>
+          <View style={styles.navigationContainer}>
+            <Link href="/our-story" style={styles.navCard}>
+              <View style={styles.card}>
+                <Ionicons name="book-outline" size={32} color={colors.primary} />
+                <Text style={styles.cardTitle}>Our Story</Text>
+                <Text style={styles.cardDescription}>Heritage meets modern twist</Text>
+              </View>
+            </Link>
 
-          <Link href="/ingredients" style={styles.navCard}>
-            <View style={styles.card}>
-              <Ionicons name="leaf-outline" size={32} color="#8B4513" />
-              <Text style={styles.cardTitle}>Ingredients</Text>
-              <Text style={styles.cardDescription}>100% natural goodness</Text>
-            </View>
-          </Link>
+            <Link href="/ingredients" style={styles.navCard}>
+              <View style={styles.card}>
+                <Ionicons name="leaf-outline" size={32} color={colors.primary} />
+                <Text style={styles.cardTitle}>Ingredients</Text>
+                <Text style={styles.cardDescription}>100% natural goodness</Text>
+              </View>
+            </Link>
 
-          <Link href="/products" style={styles.navCard}>
-            <View style={styles.card}>
-              <Ionicons name="cube-outline" size={32} color="#8B4513" />
-              <Text style={styles.cardTitle}>Products</Text>
-              <Text style={styles.cardDescription}>Our healthy cookies</Text>
-            </View>
-          </Link>
+            <Link href="/products" style={styles.navCard}>
+              <View style={styles.card}>
+                <Ionicons name="cube-outline" size={32} color={colors.primary} />
+                <Text style={styles.cardTitle}>Products</Text>
+                <Text style={styles.cardDescription}>Our healthy cookies</Text>
+              </View>
+            </Link>
 
-          <Link href="/why-jaggery" style={styles.navCard}>
-            <View style={styles.card}>
-              <Ionicons name="heart-outline" size={32} color="#8B4513" />
-              <Text style={styles.cardTitle}>Why Jaggery</Text>
-              <Text style={styles.cardDescription}>The sweet truth</Text>
-            </View>
-          </Link>
+            <Link href="/why-jaggery" style={styles.navCard}>
+              <View style={styles.card}>
+                <Ionicons name="heart-outline" size={32} color={colors.primary} />
+                <Text style={styles.cardTitle}>Why Jaggery</Text>
+                <Text style={styles.cardDescription}>The sweet truth</Text>
+              </View>
+            </Link>
+          </View>
         </View>
 
         {/* CTA Section */}
         <View style={styles.ctaSection}>
-          <Text style={styles.ctaTitle}>Ready to taste the difference?</Text>
-          <Link href="/contact" style={styles.ctaButton}>
-            <View style={styles.button}>
-              <Ionicons name="logo-whatsapp" size={24} color="#FFFFFF" />
-              <Text style={styles.buttonText}>Order on WhatsApp</Text>
-            </View>
-          </Link>
+          <Text style={styles.ctaTitle}>{homeContent.cta.title}</Text>
+          <Text style={styles.ctaDescription}>{homeContent.cta.description}</Text>
+          <View style={styles.ctaButton} onTouchEnd={handleWhatsAppPress}>
+            <Ionicons name="logo-whatsapp" size={24} color={colors.white} />
+            <Text style={styles.buttonText}>{homeContent.cta.buttonText}</Text>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -87,93 +157,79 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingBottom: spacing.xl,
   },
-  heroSection: {
-    alignItems: 'center',
+  section: {
     paddingHorizontal: spacing.lg,
-    paddingTop: spacing.xxl,
-    paddingBottom: spacing.xl,
+    paddingVertical: spacing.xl,
   },
-  logoContainer: {
-    alignItems: 'center',
+  sectionTitle: {
+    ...typography.h2,
+    textAlign: 'center',
     marginBottom: spacing.xl,
   },
-  logo: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: colors.primary,
-    fontFamily: fonts.heading,
-    marginBottom: spacing.sm,
+  featuresGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-  tagline: {
-    fontSize: 18,
-    color: colors.text.secondary,
-    textAlign: 'center',
-    fontFamily: fonts.body,
-    fontWeight: '500',
+  processContainer: {
+    paddingHorizontal: spacing.md,
   },
-  benefitsContainer: {
-    backgroundColor: colors.white,
-    padding: spacing.lg,
-    borderRadius: borderRadius.md,
-    ...shadows.md,
+  nutritionGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-  benefitsText: {
-    fontSize: 16,
-    color: colors.primary,
-    textAlign: 'center',
-    fontFamily: fonts.body,
-    fontWeight: '600',
-  },
-  benefitItem: {
-    color: colors.primary,
+  testimonialsContainer: {
+    paddingHorizontal: spacing.sm,
   },
   navigationContainer: {
-    paddingHorizontal: spacing.lg,
-    marginBottom: spacing.xl,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   navCard: {
+    width: '48%',
     marginBottom: spacing.md,
   },
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.surface,
     padding: spacing.lg,
-    borderRadius: borderRadius.md,
+    borderRadius: borderRadius.lg,
     alignItems: 'center',
     ...shadows.md,
+    minHeight: 140,
+    justifyContent: 'center',
   },
   cardTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.primary,
+    ...typography.h4,
+    textAlign: 'center',
     marginTop: spacing.sm,
     marginBottom: spacing.xs,
-    fontFamily: fonts.heading,
   },
   cardDescription: {
-    fontSize: 14,
-    color: colors.text.secondary,
+    ...typography.bodySmall,
     textAlign: 'center',
-    fontFamily: fonts.body,
   },
   ctaSection: {
     alignItems: 'center',
     paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.xl,
+    paddingVertical: spacing.xxl,
+    backgroundColor: colors.surface,
+    marginTop: spacing.xl,
   },
   ctaTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.primary,
+    ...typography.h2,
     textAlign: 'center',
-    marginBottom: spacing.lg,
-    fontFamily: fonts.heading,
+    marginBottom: spacing.md,
+  },
+  ctaDescription: {
+    ...typography.lead,
+    textAlign: 'center',
+    marginBottom: spacing.xl,
+    maxWidth: 500,
   },
   ctaButton: {
-    textDecorationLine: 'none',
-  },
-  button: {
     backgroundColor: colors.whatsapp,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
@@ -183,10 +239,7 @@ const styles = StyleSheet.create({
     ...shadows.lg,
   },
   buttonText: {
-    color: colors.white,
-    fontSize: 18,
-    fontWeight: 'bold',
+    ...typography.button,
     marginLeft: spacing.sm,
-    fontFamily: fonts.button,
   },
 });

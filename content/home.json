@@ -1,11 +1,117 @@
 {
-  "tagline": "Healthy Jaggery Cookies for Modern Living",
-  "benefits": [
-    "Zero Maida",
-    "Zero Refined Sugar", 
-    "100% Natural Ingredients"
+  "hero": {
+    "title": "Snackua",
+    "subtitle": "Healthy Jaggery Cookies for Modern Living",
+    "description": "Experience the perfect blend of traditional taste and modern health consciousness with our premium jaggery cookies.",
+    "cta": "Order Now",
+    "backgroundImage": "/images/hero-banner.jpg",
+    "logo": "/images/logo.png"
+  },
+  "features": [
+    {
+      "icon": "leaf",
+      "title": "100% Natural",
+      "description": "Made with pure jaggery and whole wheat flour"
+    },
+    {
+      "icon": "heart",
+      "title": "Zero Maida",
+      "description": "No refined flour, no artificial preservatives"
+    },
+    {
+      "icon": "shield",
+      "title": "Family Recipe",
+      "description": "Time-tested recipe passed down through generations"
+    }
   ],
-  "heroDescription": "Experience the perfect blend of traditional taste and modern health consciousness with our premium jaggery cookies.",
-  "ctaText": "Ready to taste the difference?",
-  "ctaButtonText": "Order on WhatsApp"
+  "testimonials": [
+    {
+      "name": "Priya Sharma",
+      "location": "Mumbai",
+      "text": "Finally, cookies that taste amazing and are actually good for you! My kids love them and I feel good about giving them these healthy treats.",
+      "rating": 5,
+      "image": "/images/testimonial-1.jpg"
+    },
+    {
+      "name": "Rajesh Kumar",
+      "location": "Delhi",
+      "text": "The perfect balance of tradition and health. These cookies remind me of my grandmother's recipe but with modern health benefits.",
+      "rating": 5,
+      "image": "/images/testimonial-2.jpg"
+    },
+    {
+      "name": "Anita Patel",
+      "location": "Bangalore",
+      "text": "As a nutritionist, I highly recommend Snackua cookies. They're made with natural ingredients and taste absolutely delicious.",
+      "rating": 5,
+      "image": "/images/testimonial-3.jpg"
+    }
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Select Ingredients",
+      "description": "We carefully select the finest whole wheat flour, pure jaggery, and fresh natural ingredients",
+      "image": "/images/process/process-1.jpg"
+    },
+    {
+      "step": 2,
+      "title": "Traditional Mixing",
+      "description": "Our family recipe is mixed using traditional methods to preserve the authentic taste",
+      "image": "/images/process/process-2.jpg"
+    },
+    {
+      "step": 3,
+      "title": "Hand-crafted Baking",
+      "description": "Each cookie is hand-shaped and baked to perfection in our traditional oven",
+      "image": "/images/process/process-3.jpg"
+    },
+    {
+      "step": 4,
+      "title": "Fresh Packaging",
+      "description": "Cookies are packed fresh and delivered to maintain their crispness and flavor",
+      "image": "/images/process/process-4.jpg"
+    },
+    {
+      "step": 5,
+      "title": "Quality Check",
+      "description": "Every batch undergoes rigorous quality testing to ensure perfect taste and texture",
+      "image": "/images/process/process-5.jpg"
+    }
+  ],
+  "nutrition": {
+    "title": "Nutritional Benefits",
+    "highlights": [
+      {
+        "icon": "nutrition",
+        "title": "High Fiber",
+        "value": "6g per 100g",
+        "description": "Supports digestive health"
+      },
+      {
+        "icon": "leaf",
+        "title": "Natural Sugar",
+        "value": "25g per 100g",
+        "description": "From pure jaggery, no refined sugar"
+      },
+      {
+        "icon": "heart",
+        "title": "Low Fat",
+        "value": "12g per 100g",
+        "description": "Healthy fats from desi ghee"
+      },
+      {
+        "icon": "fitness",
+        "title": "Protein Rich",
+        "value": "8g per 100g",
+        "description": "From whole wheat flour"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to taste the difference?",
+    "description": "Order now and experience the perfect blend of tradition and health",
+    "buttonText": "Order on WhatsApp",
+    "whatsappLink": "https://wa.me/918105807581?text=Hi! I'd like to order Snackua cookies. Please share details about availability and pricing."
+  }
 }
