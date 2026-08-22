@@ -18,8 +18,12 @@ export default function PlaceholderImage({
   text, 
   backgroundColor = colors.background 
 }: PlaceholderImageProps) {
+  // Treat the given size as an intrinsic ratio rather than a hard pixel box,
+  // so a placeholder wider than the screen scales down instead of overflowing.
+  const aspectRatio = height > 0 ? width / height : undefined;
+
   return (
-    <View style={[styles.container, { width, height, backgroundColor }]}>
+    <View style={[styles.container, { width, maxWidth: '100%', aspectRatio, backgroundColor }]}>
       <Ionicons name={icon as any} size={32} color={colors.text.light} />
       <Text style={styles.text}>{text}</Text>
     </View>

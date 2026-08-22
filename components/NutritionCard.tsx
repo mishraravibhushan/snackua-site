@@ -1,24 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+import { colors, spacing, borderRadius, shadows } from '../styles/theme';
+import { useTypography } from '../styles/responsive';
 
 interface NutritionCardProps {
   icon: string;
   title: string;
   value: string;
   description: string;
+  style?: StyleProp<ViewStyle>;
 }
 
-export default function NutritionCard({ icon, title, value, description }: NutritionCardProps) {
+export default function NutritionCard({ icon, title, value, description, style }: NutritionCardProps) {
+  const type = useTypography();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.iconContainer}>
         <Ionicons name={icon as any} size={24} color={colors.primary} />
       </View>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.value}>{value}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <Text style={[type.h4, styles.title]}>{title}</Text>
+      <Text style={[type.h3, styles.value]}>{value}</Text>
+      <Text style={[type.bodySmall, styles.description]}>{description}</Text>
     </View>
   );
 }
@@ -44,18 +48,15 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
   },
   title: {
-    ...typography.h4,
     textAlign: 'center',
     marginBottom: spacing.xs,
   },
   value: {
-    ...typography.h3,
     color: colors.primary,
     textAlign: 'center',
     marginBottom: spacing.sm,
   },
   description: {
-    ...typography.bodySmall,
     textAlign: 'center',
     color: colors.text.secondary,
   },

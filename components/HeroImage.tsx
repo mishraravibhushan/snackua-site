@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, shadows, fonts } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, shadows, fonts, minTouchTarget } from '../styles/theme';
+import { useResponsiveValue } from '../styles/responsive';
 import PlaceholderImage from './PlaceholderImage';
 
 interface HeroImageProps {
@@ -23,14 +24,24 @@ export default function HeroImage({
 }: HeroImageProps) {
   // Check if background image exists, otherwise use placeholder
   const hasImage = backgroundImage && !backgroundImage.includes('placeholder');
-  
-  // Debug logging
-  console.log('HeroImage - backgroundImage:', backgroundImage);
-  console.log('HeroImage - hasImage:', hasImage);
-  
+  // Grows with the screen instead of a fixed 500px box.
+  const minHeight = useResponsiveValue({ phone: 420, tablet: 500, desktop: 560 });
+  const heroType = useResponsiveValue({
+    phone: { title: 32, titleLine: 40, subtitle: 20, subtitleLine: 28, description: 16, descriptionLine: 24 },
+    tablet: { title: 40, titleLine: 48, subtitle: 22, subtitleLine: 30, description: 17, descriptionLine: 26 },
+    desktop: { title: 48, titleLine: 56, subtitle: 24, subtitleLine: 32, description: 18, descriptionLine: 28 },
+  });
+
+  const titleStyle = [styles.title, { fontSize: heroType.title, lineHeight: heroType.titleLine }];
+  const subtitleStyle = [styles.subtitle, { fontSize: heroType.subtitle, lineHeight: heroType.subtitleLine }];
+  const descriptionStyle = [
+    styles.description,
+    { fontSize: heroType.description, lineHeight: heroType.descriptionLine },
+  ];
+
   if (!hasImage) {
     return (
-      <View style={styles.placeholderContainer}>
+      <View style={[styles.placeholderContainer, { minHeight }]}>
         <PlaceholderImage
           width={400}
           height={300}
@@ -39,9 +50,9 @@ export default function HeroImage({
           backgroundColor={colors.primary}
         />
         <View style={styles.content}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
-          <Text style={styles.description}>{description}</Text>
+          <Text style={titleStyle}>{title}</Text>
+          <Text style={subtitleStyle}>{subtitle}</Text>
+          <Text style={descriptionStyle}>{description}</Text>
           <TouchableOpacity style={styles.ctaButton} onPress={onCTAPress}>
             <Ionicons name="logo-whatsapp" size={20} color={colors.white} />
             <Text style={styles.ctaText}>{ctaText}</Text>
@@ -53,7 +64,7 @@ export default function HeroImage({
 
   if (Platform.OS === 'web') {
     return (
-      <View style={styles.background}>
+      <View style={[styles.background, { minHeight }]}>
         <div 
           style={{
             ...StyleSheet.absoluteFillObject,
@@ -65,9 +76,9 @@ export default function HeroImage({
         />
         <View style={styles.overlay}>
           <View style={styles.content}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subtitle}>{subtitle}</Text>
-            <Text style={styles.description}>{description}</Text>
+            <Text style={titleStyle}>{title}</Text>
+            <Text style={subtitleStyle}>{subtitle}</Text>
+            <Text style={descriptionStyle}>{description}</Text>
             <TouchableOpacity style={styles.ctaButton} onPress={onCTAPress}>
               <Ionicons name="logo-whatsapp" size={20} color={colors.white} />
               <Text style={styles.ctaText}>{ctaText}</Text>
@@ -81,14 +92,14 @@ export default function HeroImage({
   return (
     <ImageBackground
       source={{ uri: backgroundImage }}
-      style={styles.background}
+      style={[styles.background, { minHeight }]}
       imageStyle={styles.backgroundImage}
     >
       <View style={styles.overlay}>
         <View style={styles.content}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
-          <Text style={styles.description}>{description}</Text>
+          <Text style={titleStyle}>{title}</Text>
+          <Text style={subtitleStyle}>{subtitle}</Text>
+          <Text style={descriptionStyle}>{description}</Text>
           <TouchableOpacity style={styles.ctaButton} onPress={onCTAPress}>
             <Ionicons name="logo-whatsapp" size={20} color={colors.white} />
             <Text style={styles.ctaText}>{ctaText}</Text>
@@ -101,10 +112,10 @@ export default function HeroImage({
 
 const styles = StyleSheet.create({
   background: {
-    height: 500,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: spacing.xl,
   },
   backgroundImage: {
     borderRadius: 0,
@@ -116,7 +127,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   placeholderContainer: {
-    height: 500,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -125,8 +135,9 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
-    paddingHorizontal: spacing.xl,
+    paddingHorizontal: spacing.lg,
     maxWidth: 600,
+    width: '100%',
   },
   title: {
     fontSize: 48,
@@ -168,9 +179,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whatsapp,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
+    minHeight: minTouchTarget,
     borderRadius: borderRadius.full,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.lg,
   },
   ctaText: {

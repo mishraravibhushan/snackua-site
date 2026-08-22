@@ -49,7 +49,12 @@ jobs:
         
       - name: Add .nojekyll file
         run: touch dist/.nojekyll
-        
+
+      # GitHub Pages ignores the Netlify-style _redirects file, so serve the
+      # SPA shell on unknown paths to keep deep links like /products working.
+      - name: Add SPA fallback for deep links
+        run: cp dist/index.html dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

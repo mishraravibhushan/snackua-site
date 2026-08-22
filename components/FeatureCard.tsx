@@ -1,22 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+import { colors, spacing, borderRadius, shadows } from '../styles/theme';
+import { useTypography } from '../styles/responsive';
 
 interface FeatureCardProps {
   icon: string;
   title: string;
   description: string;
+  style?: StyleProp<ViewStyle>;
 }
 
-export default function FeatureCard({ icon, title, description }: FeatureCardProps) {
+export default function FeatureCard({ icon, title, description, style }: FeatureCardProps) {
+  const type = useTypography();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.iconContainer}>
         <Ionicons name={icon as any} size={32} color={colors.primary} />
       </View>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <Text style={[type.h4, styles.title]}>{title}</Text>
+      <Text style={[type.body, styles.description]}>{description}</Text>
     </View>
   );
 }
@@ -42,12 +46,10 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
   },
   title: {
-    ...typography.h4,
     textAlign: 'center',
     marginBottom: spacing.sm,
   },
   description: {
-    ...typography.body,
     textAlign: 'center',
     color: colors.text.secondary,
   },

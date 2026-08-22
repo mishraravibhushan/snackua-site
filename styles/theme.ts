@@ -6,6 +6,7 @@ export const colors = {
   accent: '#CD853F',         // Peru (warm brown)
   background: '#F5F1E8',     // Cream
   surface: '#FFFFFF',        // White
+  white: '#FFFFFF',
   black: '#000000',
   text: {
     primary: '#2C1810',      // Dark brown
@@ -40,6 +41,16 @@ export const spacing = {
   xl: 32,
   xxl: 48,
 };
+
+// Width thresholds used by useBreakpoint(). A screen is a phone below
+// `tablet`, a tablet below `desktop`, and a desktop at or above it.
+export const breakpoints = {
+  tablet: 768,
+  desktop: 1024,
+};
+
+// Minimum touch target, per WCAG 2.5.5 / platform HIG guidance.
+export const minTouchTarget = 44;
 
 export const borderRadius = {
   sm: 8,

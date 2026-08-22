@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, shadows, minTouchTarget } from '../styles/theme';
+import { useResponsiveValue, useTypography } from '../styles/responsive';
 import PlaceholderImage from './PlaceholderImage';
 
 interface HeroImageProps {
@@ -25,14 +26,15 @@ export default function HeroImage({
 }: HeroImageProps) {
   // Check if background image exists, otherwise use placeholder
   const hasImage = backgroundImage && !backgroundImage.includes('placeholder');
-  
-  // Debug logging
-  console.log('HeroImage - backgroundImage:', backgroundImage);
-  console.log('HeroImage - hasImage:', hasImage);
-  
+  const type = useTypography();
+  // Grows with the screen instead of a fixed 500px box, so the hero never
+  // swallows a short phone viewport or leaves dead space on a wide one.
+  const minHeight = useResponsiveValue({ phone: 420, tablet: 500, desktop: 560 });
+  const logoSize = useResponsiveValue({ phone: 96, tablet: 130, desktop: 150 });
+
   if (!hasImage) {
     return (
-      <View style={styles.placeholderContainer}>
+      <View style={[styles.placeholderContainer, { minHeight }]}>
         <PlaceholderImage
           width={400}
           height={300}
@@ -41,10 +43,15 @@ export default function HeroImage({
           backgroundColor={colors.primary}
         />
         <View style={styles.content}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
-          <Text style={styles.description}>{description}</Text>
-          <TouchableOpacity style={styles.ctaButton} onPress={onCTAPress}>
+          <Text style={[type.hero, styles.title]}>{title}</Text>
+          <Text style={[type.h3, styles.subtitle]}>{subtitle}</Text>
+          <Text style={[type.lead, styles.description]}>{description}</Text>
+          <TouchableOpacity
+            style={styles.ctaButton}
+            onPress={onCTAPress}
+            accessibilityRole="button"
+            accessibilityLabel={ctaText}
+          >
             <Ionicons name="logo-whatsapp" size={20} color={colors.white} />
             <Text style={styles.ctaText}>{ctaText}</Text>
           </TouchableOpacity>
@@ -54,8 +61,8 @@ export default function HeroImage({
   }
 
   return (
-    <View style={styles.background}>
-      <div 
+    <View style={[styles.background, { minHeight }]}>
+      <div
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundImage: `url(${backgroundImage})`,
@@ -67,16 +74,21 @@ export default function HeroImage({
       <View style={styles.overlay}>
         <View style={styles.content}>
           {logo && (
-            <img 
-              src={logo} 
-              alt="Snackua Logo" 
-              style={styles.logo}
+            <img
+              src={logo}
+              alt="Snackua Logo"
+              style={{ ...styles.logo, width: logoSize, height: logoSize }}
             />
           )}
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
-          <Text style={styles.description}>{description}</Text>
-          <TouchableOpacity style={styles.ctaButton} onPress={onCTAPress}>
+          <Text style={[type.hero, styles.title]}>{title}</Text>
+          <Text style={[type.h3, styles.subtitle]}>{subtitle}</Text>
+          <Text style={[type.lead, styles.description]}>{description}</Text>
+          <TouchableOpacity
+            style={styles.ctaButton}
+            onPress={onCTAPress}
+            accessibilityRole="button"
+            accessibilityLabel={ctaText}
+          >
             <Ionicons name="logo-whatsapp" size={20} color={colors.white} />
             <Text style={styles.ctaText}>{ctaText}</Text>
           </TouchableOpacity>
@@ -88,11 +100,11 @@ export default function HeroImage({
 
 const styles = StyleSheet.create({
   background: {
-    height: 500,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    paddingVertical: spacing.xl,
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -102,7 +114,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   placeholderContainer: {
-    height: 500,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -111,18 +122,16 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
-    paddingHorizontal: spacing.xl,
+    paddingHorizontal: spacing.lg,
     maxWidth: 600,
+    width: '100%',
   },
   logo: {
-    width: 150, // Increased logo size for better prominence
-    height: 150, // Increased logo size for better prominence
     marginBottom: spacing.md, // Reduced spacing to bring text closer
     objectFit: 'contain',
     filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))', // Add shadow to logo
   },
   title: {
-    ...typography.hero,
     color: colors.white,
     textAlign: 'center',
     marginBottom: spacing.sm,
@@ -132,7 +141,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', // Make title bolder
   },
   subtitle: {
-    ...typography.h3,
     color: colors.white,
     textAlign: 'center',
     marginBottom: spacing.md,
@@ -142,7 +150,6 @@ const styles = StyleSheet.create({
     fontWeight: '600', // Make subtitle bolder
   },
   description: {
-    ...typography.lead,
     color: colors.white,
     textAlign: 'center',
     marginBottom: spacing.xl,
@@ -150,15 +157,16 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 3,
     fontWeight: '500', // Make description bolder
-    lineHeight: 28, // Better line height for readability
   },
   ctaButton: {
     backgroundColor: colors.whatsapp,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
+    minHeight: minTouchTarget,
     borderRadius: borderRadius.full,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.lg,
   },
   ctaText: {

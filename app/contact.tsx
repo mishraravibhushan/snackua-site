@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Linking, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Linking, Platform, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,7 +8,7 @@ import Card from '../components/Card';
 import HeroSection from '../components/HeroSection';
 import CTAButton from '../components/CTAButton';
 import contactContent from '../content/contact.json';
-import { colors, spacing, typography } from '../styles/theme';
+import { colors, spacing, typography, minTouchTarget } from '../styles/theme';
 
 export default function ContactScreen() {
   const handleWhatsAppPress = () => {
@@ -117,21 +117,25 @@ export default function ContactScreen() {
           <Card style={styles.socialCard}>
             <Text style={styles.sectionTitle}>Follow Us</Text>
             <View style={styles.socialLinks}>
-              <View 
-                style={styles.socialItem}
-                onTouchEnd={() => handleSocialPress('instagram', contactContent.socialMedia.instagram)}
+              <Pressable
+                style={({ pressed }) => [styles.socialItem, pressed && styles.pressed]}
+                onPress={() => handleSocialPress('instagram', contactContent.socialMedia.instagram)}
+                accessibilityRole="link"
+                accessibilityLabel={`Instagram: ${contactContent.socialMedia.instagram}`}
               >
                 <Ionicons name="logo-instagram" size={24} color="#E4405F" />
                 <Text style={styles.socialText}>{contactContent.socialMedia.instagram}</Text>
-              </View>
-              
-              <View 
-                style={styles.socialItem}
-                onTouchEnd={() => handleSocialPress('facebook', contactContent.socialMedia.facebook)}
+              </Pressable>
+
+              <Pressable
+                style={({ pressed }) => [styles.socialItem, pressed && styles.pressed]}
+                onPress={() => handleSocialPress('facebook', contactContent.socialMedia.facebook)}
+                accessibilityRole="link"
+                accessibilityLabel={`Facebook: ${contactContent.socialMedia.facebook}`}
               >
                 <Ionicons name="logo-facebook" size={24} color="#1877F2" />
                 <Text style={styles.socialText}>{contactContent.socialMedia.facebook}</Text>
-              </View>
+              </Pressable>
             </View>
           </Card>
 
@@ -234,8 +238,14 @@ const styles = StyleSheet.create({
   },
   socialItem: {
     alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: spacing.md,
     minWidth: '30%',
+    minHeight: minTouchTarget,
+    paddingVertical: spacing.xs,
+  },
+  pressed: {
+    opacity: 0.6,
   },
   socialText: {
     ...typography.bodySmall,
@@ -257,6 +267,10 @@ const styles = StyleSheet.create({
   hoursValue: {
     ...typography.body,
     color: colors.text.secondary,
+    // Long opening hours would otherwise push past the card on narrow screens.
+    flex: 1,
+    textAlign: 'right',
+    marginLeft: spacing.sm,
   },
   timezoneText: {
     ...typography.bodySmall,

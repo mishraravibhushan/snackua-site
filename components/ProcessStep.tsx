@@ -73,10 +73,14 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: 'center',
+    // Without this a flex child refuses to shrink below its content width,
+    // which pushed the fixed-size image past the screen edge.
+    minWidth: 0,
   },
   image: {
-    width: 250,
-    height: 250,
+    width: '100%',
+    maxWidth: 400,
+    aspectRatio: 1,
     borderRadius: borderRadius.lg,
     marginBottom: spacing.md,
   },
