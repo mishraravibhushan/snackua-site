@@ -62,6 +62,10 @@ jobs:
 
   # Deployment job
   deploy:
+    # Pull requests build for validation but must not publish: the
+    # github-pages environment only accepts deployments from main, so an
+    # unguarded deploy job fails every PR.
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
