@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
-import { colors, fonts, spacing, typography } from '../styles/theme';
+import { View, Text, StyleSheet } from 'react-native';
+import { colors, spacing } from '../styles/theme';
+import { useTypography } from '../styles/responsive';
 
 interface HeroSectionProps {
   title: string;
@@ -15,12 +16,14 @@ export default function HeroSection({
   description, 
   children 
 }: HeroSectionProps) {
+  const type = useTypography();
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
-        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-        {description && <Text style={styles.description}>{description}</Text>}
+        <Text style={[type.h1, styles.title]}>{title}</Text>
+        {subtitle && <Text style={[type.h3, styles.subtitle]}>{subtitle}</Text>}
+        {description && <Text style={[type.body, styles.description]}>{description}</Text>}
         {children}
       </View>
     </View>
@@ -37,22 +40,19 @@ const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     maxWidth: 600,
+    width: '100%',
   },
   title: {
-    ...typography.h1,
     textAlign: 'center',
     marginBottom: spacing.md,
   },
   subtitle: {
-    ...typography.h3,
     textAlign: 'center',
     color: colors.text.secondary,
     marginBottom: spacing.lg,
   },
   description: {
-    ...typography.body,
     textAlign: 'center',
     color: colors.text.secondary,
-    lineHeight: 24,
   },
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, fonts, spacing } from '../styles/theme';
+import { colors, fonts, spacing, minTouchTarget } from '../styles/theme';
 
 interface AppBarProps {
   title: string;
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
   },
   leftSection: {
-    width: 40,
+    width: minTouchTarget,
     alignItems: 'flex-start',
   },
   centerSection: {
@@ -67,11 +67,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rightSection: {
-    width: 40,
+    width: minTouchTarget,
     alignItems: 'flex-end',
   },
   backButton: {
-    padding: spacing.xs,
+    width: minTouchTarget,
+    height: minTouchTarget,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 20,

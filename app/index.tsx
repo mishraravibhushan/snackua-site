@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Linking, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 // Import content data
 import homeContent from '../content/home.json';
-import { colors, typography, spacing, borderRadius, shadows } from '../styles/theme';
+import { colors, typography, spacing, borderRadius, shadows, minTouchTarget } from '../styles/theme';
+import { useGridItemWidth, useTypography } from '../styles/responsive';
 
 // Import components
 import HeroImage from '../components/HeroImage';
@@ -16,6 +17,13 @@ import ProcessStep from '../components/ProcessStep';
 import NutritionCard from '../components/NutritionCard';
 
 export default function HomeScreen() {
+  const type = useTypography();
+  // One card per row on phones; the old layout let content-sized cards
+  // overflow the viewport and get clipped.
+  const featureWidth = useGridItemWidth({ phone: 1, tablet: 2, desktop: 3 });
+  const nutritionWidth = useGridItemWidth({ phone: 1, tablet: 2, desktop: 4 });
+  const navWidth = useGridItemWidth({ phone: 2, tablet: 2, desktop: 4 });
+
   const handleWhatsAppPress = () => {
     Linking.openURL(homeContent.cta.whatsappLink);
   };
@@ -35,7 +43,7 @@ export default function HomeScreen() {
 
         {/* Features Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Why Choose Snackua?</Text>
+          <Text style={[type.h2, styles.sectionTitle]}>Why Choose Snackua?</Text>
           <View style={styles.featuresGrid}>
             {homeContent.features.map((feature, index) => (
               <FeatureCard
@@ -43,6 +51,7 @@ export default function HomeScreen() {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
+                style={{ width: featureWidth }}
               />
             ))}
           </View>
@@ -50,7 +59,7 @@ export default function HomeScreen() {
 
         {/* Process Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>How We Make Our Cookies</Text>
+          <Text style={[type.h2, styles.sectionTitle]}>How We Make Our Cookies</Text>
           <View style={styles.processContainer}>
             {homeContent.process.map((step, index) => (
               <ProcessStep
@@ -67,7 +76,7 @@ export default function HomeScreen() {
 
         {/* Nutrition Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{homeContent.nutrition.title}</Text>
+          <Text style={[type.h2, styles.sectionTitle]}>{homeContent.nutrition.title}</Text>
           <View style={styles.nutritionGrid}>
             {homeContent.nutrition.highlights.map((highlight, index) => (
               <NutritionCard
@@ -76,6 +85,7 @@ export default function HomeScreen() {
                 title={highlight.title}
                 value={highlight.value}
                 description={highlight.description}
+                style={{ width: nutritionWidth }}
               />
             ))}
           </View>
@@ -83,7 +93,7 @@ export default function HomeScreen() {
 
         {/* Testimonials Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>What Our Customers Say</Text>
+          <Text style={[type.h2, styles.sectionTitle]}>What Our Customers Say</Text>
           <View style={styles.testimonialsContainer}>
             {homeContent.testimonials.map((testimonial, index) => (
               <TestimonialCard
@@ -100,9 +110,9 @@ export default function HomeScreen() {
 
         {/* Navigation Cards */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Explore More</Text>
+          <Text style={[type.h2, styles.sectionTitle]}>Explore More</Text>
           <View style={styles.navigationContainer}>
-            <Link href="/our-story" style={styles.navCard}>
+            <Link href="/our-story" style={[styles.navCard, { width: navWidth }]}>
               <View style={styles.card}>
                 <Ionicons name="book-outline" size={32} color={colors.primary} />
                 <Text style={styles.cardTitle}>Our Story</Text>
@@ -110,7 +120,7 @@ export default function HomeScreen() {
               </View>
             </Link>
 
-            <Link href="/ingredients" style={styles.navCard}>
+            <Link href="/ingredients" style={[styles.navCard, { width: navWidth }]}>
               <View style={styles.card}>
                 <Ionicons name="leaf-outline" size={32} color={colors.primary} />
                 <Text style={styles.cardTitle}>Ingredients</Text>
@@ -118,7 +128,7 @@ export default function HomeScreen() {
               </View>
             </Link>
 
-            <Link href="/products" style={styles.navCard}>
+            <Link href="/products" style={[styles.navCard, { width: navWidth }]}>
               <View style={styles.card}>
                 <Ionicons name="cube-outline" size={32} color={colors.primary} />
                 <Text style={styles.cardTitle}>Products</Text>
@@ -126,7 +136,7 @@ export default function HomeScreen() {
               </View>
             </Link>
 
-            <Link href="/why-jaggery" style={styles.navCard}>
+            <Link href="/why-jaggery" style={[styles.navCard, { width: navWidth }]}>
               <View style={styles.card}>
                 <Ionicons name="heart-outline" size={32} color={colors.primary} />
                 <Text style={styles.cardTitle}>Why Jaggery</Text>
@@ -138,12 +148,17 @@ export default function HomeScreen() {
 
         {/* CTA Section */}
         <View style={styles.ctaSection}>
-          <Text style={styles.ctaTitle}>{homeContent.cta.title}</Text>
-          <Text style={styles.ctaDescription}>{homeContent.cta.description}</Text>
-          <View style={styles.ctaButton} onTouchEnd={handleWhatsAppPress}>
+          <Text style={[type.h2, styles.ctaTitle]}>{homeContent.cta.title}</Text>
+          <Text style={[type.lead, styles.ctaDescription]}>{homeContent.cta.description}</Text>
+          <Pressable
+            style={({ pressed }) => [styles.ctaButton, pressed && styles.ctaButtonPressed]}
+            onPress={handleWhatsAppPress}
+            accessibilityRole="button"
+            accessibilityLabel={homeContent.cta.buttonText}
+          >
             <Ionicons name="logo-whatsapp" size={24} color={colors.white} />
             <Text style={styles.buttonText}>{homeContent.cta.buttonText}</Text>
-          </View>
+          </Pressable>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -163,7 +178,6 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xl,
   },
   sectionTitle: {
-    ...typography.h2,
     textAlign: 'center',
     marginBottom: spacing.xl,
   },
@@ -189,11 +203,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   navCard: {
-    width: '48%',
     marginBottom: spacing.md,
   },
   card: {
     backgroundColor: colors.surface,
+    // expo-router renders <Link> as an anchor and the child View as
+    // inline-flex, which would otherwise shrink-wrap to its text.
+    width: '100%',
     padding: spacing.lg,
     borderRadius: borderRadius.lg,
     alignItems: 'center',
@@ -219,12 +235,10 @@ const styles = StyleSheet.create({
     marginTop: spacing.xl,
   },
   ctaTitle: {
-    ...typography.h2,
     textAlign: 'center',
     marginBottom: spacing.md,
   },
   ctaDescription: {
-    ...typography.lead,
     textAlign: 'center',
     marginBottom: spacing.xl,
     maxWidth: 500,
@@ -233,10 +247,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whatsapp,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
+    minHeight: minTouchTarget,
     borderRadius: borderRadius.full,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     ...shadows.lg,
+  },
+  ctaButtonPressed: {
+    opacity: 0.85,
   },
   buttonText: {
     ...typography.button,
