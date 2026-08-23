@@ -43,7 +43,7 @@ export default function HomeScreen() {
 
         {/* Features Section */}
         <View style={styles.section}>
-          <Text style={[type.h2, styles.sectionTitle]}>Why Choose Snackua?</Text>
+          <Text style={[type.h2, styles.sectionTitle]}>Why choose Snackua?</Text>
           <View style={styles.featuresGrid}>
             {homeContent.features.map((feature, index) => (
               <FeatureCard
