@@ -4,32 +4,32 @@
   "ingredients": [
     {
       "name": "Whole Wheat Flour",
-      "description": "Rich in fiber, vitamins, and minerals. Provides sustained energy and supports digestive health.",
+      "description": "The whole grain, bran and all. It is what gives the cookie its colour, its density and the slightly rough crumb you can see at the break.",
       "benefits": [
-        "High in fiber",
-        "Rich in B vitamins",
-        "Supports heart health",
-        "Aids digestion"
+        "The whole grain, nothing stripped out",
+        "No maida",
+        "Gives the cookie its density",
+        "Toasted, wheaty flavour"
       ]
     },
     {
       "name": "Palm Jaggery",
-      "description": "Unrefined sweetener that retains natural minerals and antioxidants. A healthier alternative to white sugar.",
+      "description": "Reduced from palm sap rather than refined from cane. It is what makes the cookie taste of caramel and toffee rather than of plain sweetness.",
       "benefits": [
-        "Rich in iron",
-        "Natural antioxidants",
-        "Boosts immunity",
-        "Regulates blood sugar"
+        "Reduced from palm sap",
+        "Unrefined, so it keeps its colour",
+        "Caramel and toffee notes",
+        "Not sugar-free — it is still sugar"
       ]
     },
     {
       "name": "Desi Ghee",
-      "description": "Traditional clarified butter that adds richness and flavor while providing essential fatty acids.",
+      "description": "Clarified butter, and the only fat in the recipe. No palm oil, no vanaspati, no refined oil of any kind.",
       "benefits": [
-        "Healthy fats",
-        "Vitamin A & E",
-        "Supports brain health",
-        "Anti-inflammatory"
+        "The only fat we use",
+        "No refined oil, no vanaspati",
+        "Carries the aroma",
+        "Gives the short, crumbly bite"
       ]
     },
     {
@@ -44,22 +44,22 @@
     },
     {
       "name": "Dry Coconut",
-      "description": "Adds natural sweetness and texture while providing medium-chain triglycerides for energy.",
+      "description": "Dried coconut, folded through the dough. It is the texture you notice second, after the snap.",
       "benefits": [
-        "Medium-chain fats",
-        "Natural sweetness",
-        "Supports metabolism",
-        "Rich in fiber"
+        "Dried, not fresh",
+        "Adds chew against the snap",
+        "Mild, milky sweetness",
+        "Folded through the dough"
       ]
     },
     {
       "name": "Fennel Seeds",
-      "description": "Aromatic spice that aids digestion and adds a subtle licorice flavor to our cookies.",
+      "description": "Saunf — the note most people cannot place on the first bite and recognise instantly on the second.",
       "benefits": [
-        "Aids digestion",
-        "Natural breath freshener",
-        "Anti-inflammatory",
-        "Rich in antioxidants"
+        "Saunf, whole seeds",
+        "Faint aniseed note",
+        "The after-taste people ask about",
+        "A very old pairing with jaggery"
       ]
     }
   ]
