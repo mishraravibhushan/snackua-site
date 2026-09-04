@@ -38,12 +38,12 @@ export default function RootLayout() {
       };
 
       const description =
-        'Snackua - Healthy jaggery cookies made with 100% natural ingredients. Zero maida, zero refined sugar. Order now on WhatsApp!';
-      const title = 'Snackua - Healthy Jaggery Cookies';
+        'Snackua - OG Thekua Clean Cookies. Zero maida, zero refined oil. Order now on WhatsApp!';
+      const title = 'OG Thekua Baked Cookie';
       const image = '/assets/og-image.jpg';
 
       setMeta('name', 'description', description);
-      setMeta('name', 'keywords', 'healthy cookies, jaggery cookies, natural ingredients, zero maida, thekua, indian cookies, healthy snacking');
+      setMeta('name', 'keywords', 'healthy cookies, palm jaggery cookies, natural ingredients, zero maida, thekua, indian cookies, healthy snacking');
 
       // Open Graph
       setMeta('property', 'og:title', title);

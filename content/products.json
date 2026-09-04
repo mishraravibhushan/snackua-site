@@ -4,33 +4,33 @@
   "products": [
     {
       "id": "classic-jaggery-cookies",
-      "name": "Classic Jaggery Cookies",
+      "name": "OG Thekua Baked Cookie",
       "description": "Our signature cookies made with traditional ingredients and modern health consciousness.",
-      "price": "₹299",
-      "weight": "250g",
-      "servings": "Approx. 20 cookies",
+      "price": "₹160",
+      "weight": "120g",
+      "servings": "8 cookies",
       "image": "/images/products/product-hero.jpg",
       "closeupImage": "/images/products/product-closeup.jpg",
       "nutrition": {
         "per100g": {
-          "calories": "420",
-          "protein": "8g",
-          "carbs": "65g",
-          "fiber": "6g",
-          "fat": "12g",
-          "sugar": "25g"
+          "calories": "487.51",
+          "protein": "9.06g",
+          "carbs": "61.72g",
+          "fiber": "8.62g",
+          "fat": "22.71g",
+          "sugar": "10.26g"
         },
         "perCookie": {
-          "calories": "52",
-          "protein": "1g",
-          "carbs": "8g",
-          "fiber": "0.8g",
-          "fat": "1.5g",
-          "sugar": "3g"
+          "calories": "73.1",
+          "protein": "1.36g",
+          "carbs": "9.26g",
+          "fiber": "1.29g",
+          "fat": "3.41g",
+          "sugar": "1.54g"
         }
       },
-      "allergens": "Contains wheat, dairy (ghee). May contain traces of nuts.",
-      "ingredients": "Whole wheat flour, jaggery, desi ghee, fresh coconut, fennel seeds, cardamom"
+      "allergens": "Contains Wheat (Gluten) and Milk (Ghee). May contain traces of Tree Nuts and Sesame.",
+      "ingredients": "Whole Wheat Flour, Ghee (Milk), Palm Jaggery, Gram Flour (Besan), Water, Dry Coconut, Liquid Glucose (3%), Fennel Seeds, Cardamom Powder, Baking Powder, Salt, Baking Soda, Rosemary Extract."
     }
   ]
 }

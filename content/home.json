@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "Snackua",
-    "subtitle": "Healthy Jaggery Cookies for Modern Living",
-    "description": "Experience the perfect blend of traditional taste and modern health consciousness with our premium jaggery cookies.",
+    "subtitle": "Healthy Palm Jaggery Cookies for Modern Living",
+    "description": "Experience the perfect blend of traditional taste and modern health consciousness with our premium palm jaggery cookies.",
     "cta": "Order Now",
     "backgroundImage": "/images/hero-banner.jpg",
     "logo": "/images/logo.png"
@@ -11,7 +11,7 @@
     {
       "icon": "leaf",
       "title": "100% Natural",
-      "description": "Made with pure jaggery and whole wheat flour"
+      "description": "Made with palm jaggery and whole wheat flour"
     },
     {
       "icon": "heart",
@@ -51,7 +51,7 @@
     {
       "step": 1,
       "title": "Select Ingredients",
-      "description": "We carefully select the finest whole wheat flour, pure jaggery, and fresh natural ingredients",
+      "description": "We carefully select the finest whole wheat flour, palm jaggery, and fresh natural ingredients",
       "image": "/images/process/process-1.jpg"
     },
     {
@@ -85,26 +85,26 @@
       {
         "icon": "nutrition",
         "title": "High Fiber",
-        "value": "6g per 100g",
+        "value": "8.62g per 100g",
         "description": "Supports digestive health"
       },
       {
         "icon": "leaf",
-        "title": "Natural Sugar",
-        "value": "25g per 100g",
-        "description": "From pure jaggery, no refined sugar"
+        "title": "Total Sugar",
+        "value": "10.26g per 100g",
+        "description": "Of which 8.74g is added sugar"
       },
       {
-        "icon": "heart",
-        "title": "Low Fat",
-        "value": "12g per 100g",
-        "description": "Healthy fats from desi ghee"
+        "icon": "restaurant",
+        "title": "Total Fat",
+        "value": "22.71g per 100g",
+        "description": "Largely from desi ghee"
       },
       {
         "icon": "fitness",
-        "title": "Protein Rich",
-        "value": "8g per 100g",
-        "description": "From whole wheat flour"
+        "title": "Protein",
+        "value": "9.06g per 100g",
+        "description": "From whole wheat and besan"
       }
     ]
   },

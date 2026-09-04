@@ -1,43 +1,44 @@
 {
   "title": "Nutrition Information",
   "subtitle": "Know What You're Eating",
-  "disclaimer": "Nutritional values are approximate and may vary slightly based on natural variations in ingredients.",
+  "disclaimer": "Values from laboratory analysis of the current recipe. Natural ingredients vary slightly from batch to batch. Per-cookie values are based on a 15g cookie.",
   "tables": [
     {
       "title": "Per 100g",
       "data": {
-        "Energy": "420 kcal",
-        "Protein": "8g",
-        "Carbohydrates": "65g",
-        "of which sugars": "25g",
-        "Fat": "12g",
-        "of which saturated": "6g",
-        "Fiber": "6g",
-        "Sodium": "2mg",
-        "Iron": "2.5mg",
-        "Calcium": "45mg"
+        "Energy": "487.51 kcal",
+        "Carbohydrate": "61.72 g",
+        "of which total sugar": "10.26 g",
+        "of which added sugar": "8.74 g",
+        "Protein": "9.06 g",
+        "Total Fat": "22.71 g",
+        "of which saturated": "8.64 g",
+        "Trans Fat": "0 g",
+        "Cholesterol": "BLQ",
+        "Dietary Fibre": "8.62 g",
+        "Sodium": "126.8 mg"
       }
     },
     {
-      "title": "Per Cookie (approx. 12g)",
+      "title": "Per Cookie (15g)",
       "data": {
-        "Energy": "52 kcal",
-        "Protein": "1g",
-        "Carbohydrates": "8g",
-        "of which sugars": "3g",
-        "Fat": "1.5g",
-        "of which saturated": "0.8g",
-        "Fiber": "0.8g",
-        "Sodium": "0.2mg",
-        "Iron": "0.3mg",
-        "Calcium": "5.5mg"
+        "Energy": "73.1 kcal",
+        "Carbohydrate": "9.26 g",
+        "of which total sugar": "1.54 g",
+        "of which added sugar": "1.31 g",
+        "Protein": "1.36 g",
+        "Total Fat": "3.41 g",
+        "of which saturated": "1.3 g",
+        "Trans Fat": "0 g",
+        "Dietary Fibre": "1.29 g",
+        "Sodium": "19.0 mg"
       }
     }
   ],
   "benefits": [
-    "No refined sugar - sweetened with pure jaggery",
+    "Sweetened with palm jaggery",
     "High in dietary fiber from whole wheat",
-    "Natural antioxidants from jaggery and coconut",
+    "Natural antioxidants from palm jaggery and coconut",
     "Healthy fats from desi ghee",
     "Digestive benefits from fennel seeds"
   ]

@@ -13,7 +13,7 @@ export default function WhyJaggeryScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <AppBar 
-        title="Why Jaggery" 
+        title="Why Palm Jaggery" 
         showBackButton 
         onBackPress={() => router.back()} 
       />
@@ -33,7 +33,7 @@ export default function WhyJaggeryScreen() {
           ))}
           
           <Card style={styles.benefitsCard}>
-            <Text style={styles.benefitsTitle}>Health Benefits of Jaggery</Text>
+            <Text style={styles.benefitsTitle}>Health Benefits of Palm Jaggery</Text>
             {whyJaggeryContent.benefits.map((benefit, index) => (
               <View key={index} style={styles.benefitItem}>
                 <Ionicons name="checkmark-circle" size={20} color={colors.success} />

@@ -139,7 +139,7 @@ export default function HomeScreen() {
             <Link href="/why-jaggery" style={[styles.navCard, { width: navWidth }]}>
               <View style={styles.card}>
                 <Ionicons name="heart-outline" size={32} color={colors.primary} />
-                <Text style={styles.cardTitle}>Why Jaggery</Text>
+                <Text style={styles.cardTitle}>Why Palm Jaggery</Text>
                 <Text style={styles.cardDescription}>The sweet truth</Text>
               </View>
             </Link>
