@@ -124,7 +124,7 @@ export default function HomeScreen() {
               <View style={styles.card}>
                 <Ionicons name="leaf-outline" size={32} color={colors.primary} />
                 <Text style={styles.cardTitle}>Ingredients</Text>
-                <Text style={styles.cardDescription}>100% natural goodness</Text>
+                <Text style={styles.cardDescription}>Clean and high quality</Text>
               </View>
             </Link>
 
