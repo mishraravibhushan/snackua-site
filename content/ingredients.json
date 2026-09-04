@@ -33,7 +33,17 @@
       ]
     },
     {
-      "name": "Fresh Coconut",
+      "name": "Besan (Gram Flour)",
+      "description": "Stone-ground chickpea flour that gives the cookie its body and a gently nutty, roasted note.",
+      "benefits": [
+        "Ground from chickpeas",
+        "Adds structure and bite",
+        "Nutty, roasted flavour",
+        "Long used in Indian baking"
+      ]
+    },
+    {
+      "name": "Dry Coconut",
       "description": "Adds natural sweetness and texture while providing medium-chain triglycerides for energy.",
       "benefits": [
         "Medium-chain fats",
