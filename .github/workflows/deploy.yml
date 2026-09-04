@@ -1,8 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Pushes and PRs BUILD only - they verify the site still compiles.
-  # They no longer publish. See the deploy job below.
+  # A push to main builds AND publishes to snackua.com automatically.
   push:
     branches: [ main ]
     paths-ignore:
@@ -12,8 +11,8 @@ on:
     paths-ignore:
       - 'growth/**'
 
-  # Publishing to snackua.com happens ONLY from here:
-  # Actions tab -> "Deploy to GitHub Pages" -> "Run workflow".
+  # Also available on demand from the Actions tab, e.g. to re-publish
+  # without a new commit.
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -69,11 +68,10 @@ jobs:
 
   # Deployment job
   deploy:
-    # Publishing is MANUAL and deliberate. Every push to main still runs the
-    # build job above as a validation check, but the live site only changes
-    # when someone runs this workflow by hand from the Actions tab.
-    # Also guarded to main so a dispatch from another branch cannot publish.
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    # Pull requests build for validation but must not publish: the
+    # github-pages environment only accepts deployments from main, so an
+    # unguarded deploy job fails every PR.
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
