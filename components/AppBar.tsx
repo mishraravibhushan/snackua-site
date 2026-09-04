@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { colors, fonts, spacing, minTouchTarget } from '../styles/theme';
 
 interface AppBarProps {
@@ -17,6 +18,22 @@ export default function AppBar({
   onBackPress,
   rightComponent 
 }: AppBarProps) {
+  // Every screen in this app is reached from the home screen - index.tsx holds
+  // the only navigation links - so "back" always means "home" here.
+  //
+  // We navigate home explicitly rather than calling router.back(). back() was
+  // verified to be a no-op in this web build even with browser history present,
+  // and it is a no-op by definition when the app boots straight onto a route,
+  // which is the normal case on GitHub Pages: deep links, refreshes and shared
+  // links all arrive through the 404.html SPA fallback with an empty stack.
+  const handleBack = () => {
+    if (onBackPress) {
+      onBackPress();
+      return;
+    }
+    router.replace('/');
+  };
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.content}>
@@ -24,7 +41,7 @@ export default function AppBar({
           {showBackButton && (
             <TouchableOpacity 
               style={styles.backButton} 
-              onPress={onBackPress}
+              onPress={handleBack}
               accessibilityLabel="Go back"
               accessibilityRole="button"
             >

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
 import AppBar from '../components/AppBar';
 import Card from '../components/Card';
 import HeroSection from '../components/HeroSection';
@@ -21,7 +20,6 @@ export default function ProductsScreen() {
       <AppBar 
         title="Products" 
         showBackButton 
-        onBackPress={() => router.back()} 
       />
       
       <ScrollView contentContainerStyle={styles.scrollContent}>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AppBar from '../components/AppBar';
 import Card from '../components/Card';
@@ -15,7 +14,6 @@ export default function IngredientsScreen() {
       <AppBar 
         title="Ingredients" 
         showBackButton 
-        onBackPress={() => router.back()} 
       />
       
       <ScrollView contentContainerStyle={styles.scrollContent}>

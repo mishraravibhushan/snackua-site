@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
 import AppBar from '../components/AppBar';
 import HeroSection from '../components/HeroSection';
 import Accordion from '../components/Accordion';
@@ -14,7 +13,6 @@ export default function FAQsScreen() {
       <AppBar 
         title="FAQs" 
         showBackButton 
-        onBackPress={() => router.back()} 
       />
       
       <ScrollView contentContainerStyle={styles.scrollContent}>
