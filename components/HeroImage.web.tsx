@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, typography, spacing, borderRadius, shadows, minTouchTarget } from '../styles/theme';
-import { useResponsiveValue, useTypography } from '../styles/responsive';
+import { useBreakpoint, useResponsiveValue, useTypography } from '../styles/responsive';
 import PlaceholderImage from './PlaceholderImage';
 
 interface HeroImageProps {
@@ -45,6 +45,13 @@ export default function HeroImage({
   // Heights leave room for the CTA below the letterboxed banner: at 375px the
   // banner renders 211px tall, at 768px it renders 432px.
   const minHeight = useResponsiveValue({ phone: 340, tablet: 540, desktop: 560 });
+  // Below the desktop breakpoint the banner is scaled to the hero's width, so
+  // the hero can simply take the banner's own 16:9 shape. Then there is no
+  // leftover band to fill and nothing sits in empty space beside the button —
+  // the CTA moves out of the hero and onto the page underneath it. From
+  // `desktop` up the banner is taller than the box and is cropped, so the hero
+  // keeps a fixed height and the CTA stays on the artwork.
+  const bannerFitsWidth = useBreakpoint() !== 'desktop';
   // Below roughly 1000px the banner is shorter than the hero box, so it is
   // letterboxed. Anchor it to the top there: the leftover space then collects
   // at the bottom, where the CTA already sits, instead of opening a band of
@@ -85,8 +92,26 @@ export default function HeroImage({
     );
   }
 
+  const cta = (
+    <TouchableOpacity
+      style={styles.ctaButton}
+      onPress={onCTAPress}
+      accessibilityRole="button"
+      accessibilityLabel={ctaText}
+    >
+      <Ionicons name="logo-whatsapp" size={20} color={colors.white} />
+      <Text style={styles.ctaText}>{ctaText}</Text>
+    </TouchableOpacity>
+  );
+
   return (
-    <View style={[styles.background, { minHeight }]}>
+    <>
+    <View
+      style={[
+        styles.background,
+        bannerFitsWidth ? styles.bannerExact : { minHeight },
+      ]}
+    >
       <div
         style={{
           ...StyleSheet.absoluteFillObject,
@@ -114,18 +139,12 @@ export default function HeroImage({
               and crawlers, just not visually. */}
           <h1 style={srOnly}>{`${title} \u2014 ${subtitle}`}</h1>
           <p style={srOnly}>{description}</p>
-          <TouchableOpacity
-            style={styles.ctaButton}
-            onPress={onCTAPress}
-            accessibilityRole="button"
-            accessibilityLabel={ctaText}
-          >
-            <Ionicons name="logo-whatsapp" size={20} color={colors.white} />
-            <Text style={styles.ctaText}>{ctaText}</Text>
-          </TouchableOpacity>
+          {!bannerFitsWidth && cta}
         </View>
       </View>
     </View>
+    {bannerFitsWidth && <View style={styles.ctaBelow}>{cta}</View>}
+    </>
   );
 }
 
@@ -136,6 +155,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
     paddingVertical: spacing.xl,
+  },
+  // The banner's own proportions (1920x1080), so it fills the hero exactly and
+  // leaves no letterbox band.
+  bannerExact: {
+    aspectRatio: 1920 / 1080,
+    paddingVertical: 0,
+  },
+  ctaBelow: {
+    alignItems: 'center',
+    paddingVertical: spacing.lg,
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
