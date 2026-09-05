@@ -42,7 +42,19 @@ export default function HeroImage({
   const type = useTypography();
   // Grows with the screen instead of a fixed 500px box, so the hero never
   // swallows a short phone viewport or leaves dead space on a wide one.
-  const minHeight = useResponsiveValue({ phone: 420, tablet: 500, desktop: 560 });
+  // Heights leave room for the CTA below the letterboxed banner: at 375px the
+  // banner renders 211px tall, at 768px it renders 432px.
+  const minHeight = useResponsiveValue({ phone: 340, tablet: 540, desktop: 560 });
+  // Below roughly 1000px the banner is shorter than the hero box, so it is
+  // letterboxed. Anchor it to the top there: the leftover space then collects
+  // at the bottom, where the CTA already sits, instead of opening a band of
+  // dead space above the artwork. From `desktop` up the banner is taller than
+  // the box and gets cropped, so it stays centred.
+  const bgPosition = useResponsiveValue({
+    phone: 'center top',
+    tablet: 'center top',
+    desktop: 'center center',
+  });
   const logoSize = useResponsiveValue({ phone: 96, tablet: 130, desktop: 150 });
 
   if (!hasImage) {
@@ -91,7 +103,7 @@ export default function HeroImage({
             'linear-gradient(rgb(225, 192, 151) 0%, rgb(225, 192, 151) 30%, ' +
             'rgb(212, 174, 123) 70%, rgb(212, 174, 123) 100%)',
           backgroundSize: '100% auto, 100% 100%',
-          backgroundPosition: 'center, center',
+          backgroundPosition: `${bgPosition}, center`,
           backgroundRepeat: 'no-repeat, no-repeat',
         }}
       />
