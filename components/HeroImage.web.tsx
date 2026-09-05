@@ -78,10 +78,21 @@ export default function HeroImage({
       <div
         style={{
           ...StyleSheet.absoluteFillObject,
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          // Sized to the full width rather than `cover`. The hero box is nearly
+          // square on a phone but very wide on a desktop, and `cover` solved that
+          // by cropping the sides — which cut the wheat and the jaggery off the
+          // mobile view entirely. Sizing by width keeps the whole composition
+          // visible at every size and letterboxes instead; the bars are painted
+          // by a gradient running between the banner's own top and bottom edge
+          // colours, so the seams are invisible. On desktop this is identical to
+          // `cover`, since there the image is already taller than the box.
+          backgroundImage:
+            `url(${backgroundImage}), ` +
+            'linear-gradient(rgb(225, 192, 151) 0%, rgb(225, 192, 151) 30%, ' +
+            'rgb(212, 174, 123) 70%, rgb(212, 174, 123) 100%)',
+          backgroundSize: '100% auto, 100% 100%',
+          backgroundPosition: 'center, center',
+          backgroundRepeat: 'no-repeat, no-repeat',
         }}
       />
       <View style={styles.overlay}>
