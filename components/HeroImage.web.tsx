@@ -15,6 +15,19 @@ interface HeroImageProps {
   onCTAPress: () => void;
 }
 
+// Visually hidden, still announced by screen readers and read by crawlers.
+const srOnly: React.CSSProperties = {
+  position: 'absolute',
+  width: 1,
+  height: 1,
+  padding: 0,
+  margin: -1,
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  whiteSpace: 'nowrap',
+  border: 0,
+};
+
 export default function HeroImage({ 
   title, 
   subtitle, 
@@ -73,16 +86,11 @@ export default function HeroImage({
       />
       <View style={styles.overlay}>
         <View style={styles.content}>
-          {logo && (
-            <img
-              src={logo}
-              alt="Snackua Logo"
-              style={{ ...styles.logo, width: logoSize, height: logoSize }}
-            />
-          )}
-          <Text style={[type.hero, styles.title]}>{title}</Text>
-          <Text style={[type.h3, styles.subtitle]}>{subtitle}</Text>
-          <Text style={[type.lead, styles.description]}>{description}</Text>
+          {/* The banner artwork carries the wordmark and the product shot, so no
+              copy is drawn over it. The heading still exists for screen readers
+              and crawlers, just not visually. */}
+          <h1 style={srOnly}>{`${title} \u2014 ${subtitle}`}</h1>
+          <p style={srOnly}>{description}</p>
           <TouchableOpacity
             style={styles.ctaButton}
             onPress={onCTAPress}
@@ -108,9 +116,12 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Darker overlay for better text contrast
-    justifyContent: 'center',
+    // No scrim: nothing is drawn over the photo any more, so dimming it only
+    // hurt the artwork. The CTA sits low so it clears the logo and the cookie.
+    backgroundColor: 'transparent',
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingBottom: spacing.xl,
     zIndex: 1,
   },
   placeholderContainer: {
