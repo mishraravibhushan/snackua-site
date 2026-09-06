@@ -43,7 +43,14 @@ function injectMetaTags(distDir) {
     'The thekua you grew up on, baked instead of fried. Made with ghee, palm jaggery and whole wheat atta — no maida, no refined oil. Box of 8, delivered across Bengaluru.';
   const ogImage = `${siteUrl}/images/hero-banner.jpg`;
 
+  // Proves ownership of snackua.com to Meta, which gates Aggregated Event
+  // Measurement (the iOS conversion setup). Public by design — it is meant to
+  // be readable in page source, so it is not a secret in this public repo.
+  // Meta re-checks periodically, so it has to stay here permanently.
+  const facebookDomainVerification = 'z0phod6ajt7f2vmkfqfmt3orj8185k';
+
   const tags = [
+    `<meta name="facebook-domain-verification" content="${facebookDomainVerification}" />`,
     `<meta name="description" content="${description}" />`,
     `<link rel="canonical" href="${siteUrl}/" />`,
     `<meta property="og:site_name" content="Snackua" />`,
