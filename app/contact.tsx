@@ -8,6 +8,7 @@ import HeroSection from '../components/HeroSection';
 import CTAButton from '../components/CTAButton';
 import contactContent from '../content/contact.json';
 import { colors, spacing, typography, minTouchTarget } from '../styles/theme';
+import { trackPixelEvent } from '../utils/metaPixel';
 
 export default function ContactScreen() {
   const handleWhatsAppPress = () => {
@@ -28,6 +29,10 @@ export default function ContactScreen() {
     const url = `whatsapp://send?phone=${formattedNumber}&text=${message}`;
     
     if (Platform.OS === 'web') {
+      // Ordering happens in WhatsApp, off-site, so this click is the furthest
+      // down the funnel this site can ever measure. Fired before openURL,
+      // since navigating away can cancel a pending beacon.
+      trackPixelEvent('Contact', { source: 'contact_page' });
       // For web, use the standard wa.me format
       const webUrl = `https://wa.me/${formattedNumber}?text=${message}`;
       Linking.openURL(webUrl);

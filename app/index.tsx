@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import homeContent from '../content/home.json';
 import { colors, typography, spacing, borderRadius, shadows, minTouchTarget } from '../styles/theme';
 import { useGridItemWidth, useTypography } from '../styles/responsive';
+import { trackPixelEvent } from '../utils/metaPixel';
 
 // Import components
 import HeroImage from '../components/HeroImage';
@@ -25,6 +26,10 @@ export default function HomeScreen() {
   const navWidth = useGridItemWidth({ phone: 2, tablet: 2, desktop: 4 });
 
   const handleWhatsAppPress = () => {
+    // Ordering happens in WhatsApp, off-site, so this click is the furthest
+    // down the funnel this site can ever measure. Fired before openURL, since
+    // navigating away can cancel a pending beacon.
+    trackPixelEvent('Contact', { source: 'home_cta' });
     Linking.openURL(homeContent.cta.whatsappLink);
   };
 
