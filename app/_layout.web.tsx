@@ -27,39 +27,11 @@ export default function RootLayout() {
         document.head.appendChild(link);
       }
 
-      // Upsert so a remount updates the existing tag instead of appending a
-      // duplicate. The viewport tag is intentionally absent — index.html
-      // already ships one, and a second would override it.
-      const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
-        let tag = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
-        if (!tag) {
-          tag = document.createElement('meta');
-          tag.setAttribute(attr, key);
-          document.head.appendChild(tag);
-        }
-        tag.setAttribute('content', content);
-      };
-
-      const description =
-        'Snackua - OG Thekua Clean Cookies. Zero maida, zero refined oil. Order now on WhatsApp!';
-      const title = 'OG Thekua Baked Cookie';
-      const image = '/assets/og-image.jpg';
-
-      setMeta('name', 'description', description);
-      setMeta('name', 'keywords', 'healthy cookies, palm jaggery cookies, natural ingredients, zero maida, thekua, indian cookies, healthy snacking');
-
-      // Open Graph
-      setMeta('property', 'og:title', title);
-      setMeta('property', 'og:description', description);
-      setMeta('property', 'og:image', image);
-      setMeta('property', 'og:url', 'https://snackua.in');
-      setMeta('property', 'og:type', 'website');
-
-      // Twitter Card
-      setMeta('name', 'twitter:card', 'summary_large_image');
-      setMeta('name', 'twitter:title', title);
-      setMeta('name', 'twitter:description', description);
-      setMeta('name', 'twitter:image', image);
+      // Title, description, Open Graph and Twitter tags used to be injected
+      // here. They now live in app/+html.tsx instead, because link crawlers
+      // do not run JavaScript and never saw them — every shared snackua.com
+      // link previewed as a bare URL. Injecting them again from here would
+      // only overwrite the static ones in real browsers.
 
       initMetaPixel();
     }

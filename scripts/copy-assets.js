@@ -23,6 +23,60 @@ function copyDir(src, dest) {
 }
 
 
+// Link crawlers — Facebook, WhatsApp, Instagram, Google — do not run JavaScript,
+// so anything added to <head> after React mounts is invisible to them and a
+// shared snackua.com link previews as a bare URL with no title, description or
+// image. Since every order starts life as a shared WhatsApp link, these tags
+// have to be in the HTML as served.
+//
+// They are stamped in here rather than in app/+html.tsx because that file is
+// only honoured under static rendering (web.output: "static"), and this app
+// exports as a single-page bundle. Runs before fingerprintImageUrls so the
+// og:image URL picks up a content hash like every other image reference.
+function injectMetaTags(distDir) {
+  const htmlPath = path.join(distDir, 'index.html');
+  if (!fs.existsSync(htmlPath)) return;
+
+  const siteUrl = 'https://snackua.com';
+  const title = 'Snackua | Baked Thekua Cookies, Made in Bengaluru';
+  const description =
+    'The thekua you grew up on, baked instead of fried. Made with ghee, palm jaggery and whole wheat atta — no maida, no refined oil. Box of 8, delivered across Bengaluru.';
+  const ogImage = `${siteUrl}/images/hero-banner.jpg`;
+
+  const tags = [
+    `<meta name="description" content="${description}" />`,
+    `<link rel="canonical" href="${siteUrl}/" />`,
+    `<meta property="og:site_name" content="Snackua" />`,
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:image" content="${ogImage}" />`,
+    `<meta property="og:image:width" content="1920" />`,
+    `<meta property="og:image:height" content="1080" />`,
+    `<meta property="og:image:alt" content="A box of Snackua baked thekua cookies" />`,
+    `<meta property="og:url" content="${siteUrl}/" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${title}" />`,
+    `<meta name="twitter:description" content="${description}" />`,
+    `<meta name="twitter:image" content="${ogImage}" />`,
+  ].join('\n    ');
+
+  let html = fs.readFileSync(htmlPath, 'utf8');
+
+  if (html.includes('property="og:title"')) {
+    console.log('🔖 Meta tags already present, skipping');
+    return;
+  }
+
+  // Expo emits a bare <title>Snackua</title>; replace it rather than adding a
+  // second one, which crawlers resolve inconsistently.
+  html = html.replace(/<title>.*?<\/title>/i, `<title>${title}</title>`);
+  html = html.replace('</head>', `  ${tags}\n  </head>`);
+
+  fs.writeFileSync(htmlPath, html);
+  console.log('🔖 Injected SEO and Open Graph tags into index.html');
+}
+
 // Image filenames are stable (hero-banner.jpg never changes name), so browsers
 // and the Pages CDN happily serve a stale copy for max-age=600 after the file
 // behind it has been replaced — a redesigned banner appeared not to deploy.
@@ -90,6 +144,8 @@ if (fs.existsSync(path.join(assetsDir, 'fonts'))) {
   copyDir(path.join(assetsDir, 'fonts'), path.join(distDir, 'fonts'));
   console.log('✅ Fonts copied successfully');
 }
+
+injectMetaTags(distDir);
 
 fingerprintImageUrls(distDir);
 
