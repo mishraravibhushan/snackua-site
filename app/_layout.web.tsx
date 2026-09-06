@@ -1,14 +1,17 @@
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { Platform } from 'react-native';
+import { initMetaPixel, trackPixelPageView } from '../utils/metaPixel';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const pathname = usePathname();
+
   useEffect(() => {
     // Hide the splash screen after the app is ready
     SplashScreen.hideAsync();
@@ -57,8 +60,17 @@ export default function RootLayout() {
       setMeta('name', 'twitter:title', title);
       setMeta('name', 'twitter:description', description);
       setMeta('name', 'twitter:image', image);
+
+      initMetaPixel();
     }
   }, []);
+
+  // A separate effect keyed on the route: expo-router swaps screens without a
+  // page load, so the pixel would otherwise only ever see the landing page.
+  // Declared after the effect above so the base code is installed first.
+  useEffect(() => {
+    trackPixelPageView();
+  }, [pathname]);
 
   return (
     <SafeAreaProvider>
